@@ -34,8 +34,7 @@ function generatePassword() {
  const characterTypeArray = ["s", "l", "u", "n"];
  const randomCharacter = characterTypeArray[Math.floor(Math.random()*characterTypeArray.length)];
  console.log(randomCharacter);
-
-
+ getSpecialCharacter();
  // const criteria2 = specialCriteria.checked
  // const criteria3 = lowerCaseCriteria.checked
  // const criteria4 = upperCaseCriteria.checked
@@ -64,4 +63,23 @@ function getArrayLength() {
  } else {
    return "ERROR! You must enter a number between 8 and 128."
    }
+}
+function getSpecialCharacter() {
+ const specialCharactersArray = [];
+
+
+ for(let specialCharacter = 0; specialCharacter <= 128; specialCharacter++) {
+   if(specialCharacter >= 32 && specialCharacter <= 47 ||
+     specialCharacter >= 58 && specialCharacter <= 64 ||
+     specialCharacter >= 91 && specialCharacter <= 96 ||
+     specialCharacter>=123 && specialCharacter<=126) {
+      
+       specialCharactersArray.push(String.fromCharCode(specialCharacter));
+   }
+ }
+ console.log(specialCharactersArray);
+ if(specialCriteria.checked) {
+   const randomCharacter = specialCharactersArray[Math.floor(Math.random()* specialCharactersArray.length)];
+   console.log(randomCharacter);// ya me esta retornando un caracter special solo
+ }
 }
