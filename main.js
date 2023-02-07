@@ -8,16 +8,10 @@ const lowerCaseCriteria = document.querySelector("#lower-case-criteria");
 const upperCaseCriteria = document.querySelector("#upper-case-criteria");
 const numberCriteria = document.querySelector("#number-criteria");
 
-
-
-
 writePassword.addEventListener("click", () => {
 modal.classList.add('visible');
 modal.classList.remove('hidden');
 });
-
-
-
 
 submitButton.addEventListener('click', () => {
 modal.classList.add('hidden');
@@ -27,16 +21,10 @@ var passwordText = document.querySelector("#password");
 passwordText.value = password;
 });
 
-
-
-
 closeButton.addEventListener('click', () => {
 modal.classList.add('hidden');
   modal.classList.remove('visible');
 });
-
-
-
 
 function generatePassword() {
 const characterTypeArray = ["s", "l", "u", "n"];
@@ -44,14 +32,10 @@ const randomCharacter = characterTypeArray[Math.floor(Math.random()*characterTyp
 console.log("random Method choice: ",randomCharacter);
 getSpecialCharacter();
 getLowerCaseCharacter();
-// const criteria3 = lowerCaseCriteria.checked
-// const criteria4 = upperCaseCriteria.checked
+getUpperCaseCharacter();
 // const criteria5 = numberCriteria.checked
 return getArrayLength();
 }
-
-
-
 
 function getArrayLength() {
 const inputLengthValue = lengthCriteria.value
@@ -93,7 +77,6 @@ if(specialCriteria.checked) {
 }
 }
 
-
 function getLowerCaseCharacter() {
    //97 - 122
    const lowerCaseArray = [];
@@ -106,6 +89,21 @@ function getLowerCaseCharacter() {
    if(lowerCaseCriteria.checked) {
        const randomCharacter = lowerCaseArray[Math.floor(Math.random()* lowerCaseArray.length)];
        console.log('random lowerCase character:', randomCharacter);
+   }
+}
+
+function getUpperCaseCharacter() {
+   //65 - 90
+   const upperCaseArray = [];
+   for(let i = 0; i <= 128; i++) {
+       if(i >= 65 && i <= 90) {
+           upperCaseArray.push(String.fromCharCode(i));
+       }
+   }
+   console.log(upperCaseArray);
+   if(upperCaseCriteria.checked) {
+       const randomCharacter = upperCaseArray[Math.floor(Math.random()* upperCaseArray.length)];
+       console.log('random upperCase character:', randomCharacter);
    }
 }
 
