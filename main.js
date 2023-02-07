@@ -1,23 +1,7 @@
-const modal = document.querySelector('.modal');
-const submitButton = document.querySelector('.modal__button');
-const closeButton = document.querySelector('.modal__content--close');
-const writePassword = document.querySelector('#generate')
-const lengthCriteria = document.querySelector("#length-criteria");
-const specialCriteria = document.querySelector("#special-criteria");
-const lowerCaseCriteria = document.querySelector("#lower-case-criteria");
-const upperCaseCriteria = document.querySelector("#upper-case-criteria");
-const numberCriteria = document.querySelector("#number-criteria");
-
-
-
-
 writePassword.addEventListener("click", () => {
 modal.classList.add('visible');
 modal.classList.remove('hidden');
 });
-
-
-
 
 submitButton.addEventListener('click', () => {
 modal.classList.add('hidden');
@@ -27,59 +11,51 @@ var passwordText = document.querySelector("#password");
 passwordText.value = password;
 });
 
-
-
-
 closeButton.addEventListener('click', () => {
 modal.classList.add('hidden');
   modal.classList.remove('visible');
 });
 
-
-
-
 function generatePassword() {
-
 
 return getArrayLength();
 }
 
+function getCriteria() {
+   if(specialCriteria.checked) {
+       return 's'
+   } else if(lowerCaseCriteria.checked) {
+       return 'l'
+   } else if(upperCaseCriteria.checked) {
+       return 'u'
+   } else if (numberCriteria.checked) {
+       return 'n'
+   }
+}
 
-function getArrayLength() {
+function getArrayLength() { //parametro letras dentro de la funcion.....
 const inputLengthValue = lengthCriteria.value
 if(inputLengthValue >= 8 && inputLengthValue <= 128) {
   console.log("length array: ", parseInt(inputLengthValue));
   const arrayLength = parseInt(inputLengthValue);
   const passwordArray = [];
-    for (let i = 0; i < arrayLength; i++) {
+    for (let i = 0; i < arrayLength; i++) { 
+        const characterTypeArray = ["s", "l", "u", "n"];
+        const randomCharacter = characterTypeArray[Math.floor(Math.random()*characterTypeArray.length)];
+        console.log("random Method choice: ",randomCharacter);
+       
+           if(randomCharacter == "s") {
+               passwordArray.push(getSpecialCharacter());
+           } else if(randomCharacter == "u") {
+               passwordArray.push(getUpperCaseCharacter());
+           } else if(randomCharacter == "l") {
+               passwordArray.push(getLowerCaseCharacter());
+           }else if(randomCharacter == "n") {
+               passwordArray.push(getNumber());
+           }
 
-
-       const characterTypeArray = ["s", "l", "u", "n"];
-       const randomCharacter = characterTypeArray[Math.floor(Math.random()*characterTypeArray.length)];
-       console.log("random Method choice: ",randomCharacter);
-
-
-       if(randomCharacter == "s") {
-           console.log("SSSSSSSSSSSSSSSS")
-           passwordArray.push(getSpecialCharacter());
-       } else if(randomCharacter == "u") {
-           console.log("UUUUUUUUU")
-           passwordArray.push(getUpperCaseCharacter());
-       } else if(randomCharacter == "l") {
-           console.log("llllllllll")
-           passwordArray.push(getLowerCaseCharacter());
-       }else if(randomCharacter == "n") {
-           console.log("nnnnnnnnnnnnNNNN")
-           passwordArray.push(getNumber());
-       }
-
-
-   //    const number = Math.floor(Math.random() * (9 - 1) + 1)
-   //    passwordArray.push(number);
     }
     console.log("password array: ",passwordArray)
-  
-    //passwordArray.forEach(item => console.log(item))
     const wholePassword = passwordArray.join('')
     console.log('join password: ',wholePassword);
     return wholePassword
@@ -89,7 +65,6 @@ if(inputLengthValue >= 8 && inputLengthValue <= 128) {
 }
 function getSpecialCharacter() {
 const specialCharactersArray = [];
-
 
 for(let specialCharacter = 0; specialCharacter <= 128; specialCharacter++) {
   if(specialCharacter >= 32 && specialCharacter <= 47 ||
@@ -107,7 +82,6 @@ if(specialCriteria.checked) {
   return randomCharacter
 }
 }
-
 
 function getLowerCaseCharacter() {
    //97 - 122
@@ -140,9 +114,10 @@ function getUpperCaseCharacter() {
    }
 }
 
-
 function getNumber () {
+   if(numberCriteria.checked){
        const number = Math.floor(Math.random() * (9 - 1) + 1)
        console.log('random number: ', number);
        return number
+   }
 }
