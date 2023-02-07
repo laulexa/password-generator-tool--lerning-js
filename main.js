@@ -8,10 +8,16 @@ const lowerCaseCriteria = document.querySelector("#lower-case-criteria");
 const upperCaseCriteria = document.querySelector("#upper-case-criteria");
 const numberCriteria = document.querySelector("#number-criteria");
 
+
+
+
 writePassword.addEventListener("click", () => {
 modal.classList.add('visible');
 modal.classList.remove('hidden');
 });
+
+
+
 
 submitButton.addEventListener('click', () => {
 modal.classList.add('hidden');
@@ -21,21 +27,23 @@ var passwordText = document.querySelector("#password");
 passwordText.value = password;
 });
 
+
+
+
 closeButton.addEventListener('click', () => {
 modal.classList.add('hidden');
   modal.classList.remove('visible');
 });
 
+
+
+
 function generatePassword() {
-const characterTypeArray = ["s", "l", "u", "n"];
-const randomCharacter = characterTypeArray[Math.floor(Math.random()*characterTypeArray.length)];
-console.log("random Method choice: ",randomCharacter);
-getSpecialCharacter();
-getLowerCaseCharacter();
-getUpperCaseCharacter();
-getNumber();
+
+
 return getArrayLength();
 }
+
 
 function getArrayLength() {
 const inputLengthValue = lengthCriteria.value
@@ -44,8 +52,30 @@ if(inputLengthValue >= 8 && inputLengthValue <= 128) {
   const arrayLength = parseInt(inputLengthValue);
   const passwordArray = [];
     for (let i = 0; i < arrayLength; i++) {
-      const number = Math.floor(Math.random() * (9 - 1) + 1)
-      passwordArray.push(number);
+
+
+       const characterTypeArray = ["s", "l", "u", "n"];
+       const randomCharacter = characterTypeArray[Math.floor(Math.random()*characterTypeArray.length)];
+       console.log("random Method choice: ",randomCharacter);
+
+
+       if(randomCharacter == "s") {
+           console.log("SSSSSSSSSSSSSSSS")
+           passwordArray.push(getSpecialCharacter());
+       } else if(randomCharacter == "u") {
+           console.log("UUUUUUUUU")
+           passwordArray.push(getUpperCaseCharacter());
+       } else if(randomCharacter == "l") {
+           console.log("llllllllll")
+           passwordArray.push(getLowerCaseCharacter());
+       }else if(randomCharacter == "n") {
+           console.log("nnnnnnnnnnnnNNNN")
+           passwordArray.push(getNumber());
+       }
+
+
+   //    const number = Math.floor(Math.random() * (9 - 1) + 1)
+   //    passwordArray.push(number);
     }
     console.log("password array: ",passwordArray)
   
@@ -60,6 +90,7 @@ if(inputLengthValue >= 8 && inputLengthValue <= 128) {
 function getSpecialCharacter() {
 const specialCharactersArray = [];
 
+
 for(let specialCharacter = 0; specialCharacter <= 128; specialCharacter++) {
   if(specialCharacter >= 32 && specialCharacter <= 47 ||
     specialCharacter >= 58 && specialCharacter <= 64 ||
@@ -73,8 +104,10 @@ console.log(specialCharactersArray);
 if(specialCriteria.checked) {
   const randomCharacter = specialCharactersArray[Math.floor(Math.random()* specialCharactersArray.length)];
   console.log("random special character:",randomCharacter);// ya me esta retornando un caracter special solo
+  return randomCharacter
 }
 }
+
 
 function getLowerCaseCharacter() {
    //97 - 122
@@ -88,6 +121,7 @@ function getLowerCaseCharacter() {
    if(lowerCaseCriteria.checked) {
        const randomCharacter = lowerCaseArray[Math.floor(Math.random()* lowerCaseArray.length)];
        console.log('random lowerCase character:', randomCharacter);
+       return randomCharacter
    }
 }
 function getUpperCaseCharacter() {
@@ -102,10 +136,13 @@ function getUpperCaseCharacter() {
    if(upperCaseCriteria.checked) {
        const randomCharacter = upperCaseArray[Math.floor(Math.random()* upperCaseArray.length)];
        console.log('random upperCase character:', randomCharacter);
+       return randomCharacter
    }
 }
+
 
 function getNumber () {
        const number = Math.floor(Math.random() * (9 - 1) + 1)
        console.log('random number: ', number);
+       return number
 }
