@@ -114,7 +114,7 @@ margin-bottom: 10px;
 border: 2px solid var(--light-blue-dark);
 border-radius: 15px;
 resize: none;
-overflow: scroll;
+overflow: hidden;
 height: 200px;
 }
 
@@ -202,4 +202,5 @@ padding-left: 20px;
 .btn {
   font-size: 0.8rem;
 }
+
 }
