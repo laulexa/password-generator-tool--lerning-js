@@ -114,8 +114,8 @@ margin-bottom: 10px;
 border: 2px solid var(--light-blue-dark);
 border-radius: 15px;
 resize: none;
-overflow: hidden;
-height: 150px;
+overflow: scroll;
+height: 200px;
 }
 
 /* modal */
