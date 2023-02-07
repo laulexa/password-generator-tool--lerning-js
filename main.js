@@ -1,26 +1,26 @@
 writePassword.addEventListener("click", () => {
     modal.classList.add('visible');
     modal.classList.remove('hidden');
-    });
-     
-    submitButton.addEventListener('click', () => {
+   });
+   
+   submitButton.addEventListener('click', () => {
     modal.classList.add('hidden');
     modal.classList.remove('visible');
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
-    passwordText.value = password;
-    });
-    
-    closeButton.addEventListener('click', () => {
+        var password = generatePassword();
+        var passwordText = document.querySelector("#password");
+        passwordText.value = password;
+   });
+   
+   closeButton.addEventListener('click', () => {
     modal.classList.add('hidden');
     modal.classList.remove('visible');
-    });
-      
-    function generatePassword() {
-    return getArrayLength();
-    }
-    
-    function getCriteria() {
+   });
+   
+   function generatePassword() {
+    return getArrayLength(); 
+   }
+   
+   function getCriteria() {
        const arrayType = [];
        const special = specialCriteria.checked;
        const lower = lowerCaseCriteria.checked;
@@ -71,50 +71,51 @@ writePassword.addEventListener("click", () => {
        } else if(!special && !lower && !upper && number) {
            arrayType.push("n");
            return arrayType;
+       }  else {
+           return arrayType
        }
-        console.log("ARRAY-CRITERIA: ", arrayType);
-    }
-     
-    function getArrayLength() { //parametro letras dentro de la funcion.....
+   }
+   
+   function getArrayLength() { //parametro letras dentro de la funcion.....
     const inputLengthValue = lengthCriteria.value
-    if(inputLengthValue >= 8 && inputLengthValue <= 128) {
+    const characterTypeArray = getCriteria();
+    if(inputLengthValue >= 8 && inputLengthValue <= 128 && characterTypeArray.length > 0) {
       console.log("length array: ", parseInt(inputLengthValue));
       const arrayLength = parseInt(inputLengthValue);
       const passwordArray = [];
-        for (let i = 0; i < arrayLength; i++) { 
+        for (let i = 0; i < arrayLength; i++) {  
            //  const characterTypeArray = ["s", "l", "u", "n"];
-           const characterTypeArray = getCriteria();
-           randomCharacter = characterTypeArray[Math.floor(Math.random()*characterTypeArray.length)];
-           console.log("random Method choice: ",randomCharacter);      
-               if(randomCharacter == "s") {
-                   passwordArray.push(getSpecialCharacter());
-               } else if(randomCharacter == "u") {
-                   passwordArray.push(getUpperCaseCharacter());
-               } else if(randomCharacter == "l") {
-                   passwordArray.push(getLowerCaseCharacter());
-               }else if(randomCharacter == "n") {
-                   passwordArray.push(getNumber());
-               }
-        }
+               randomCharacter = characterTypeArray[Math.floor(Math.random()*characterTypeArray.length)];
+               console.log("random Method choice: ",randomCharacter);       
+                   if(randomCharacter == "s") {
+                       passwordArray.push(getSpecialCharacter());
+                   } else if(randomCharacter == "u") {
+                       passwordArray.push(getUpperCaseCharacter());
+                   } else if(randomCharacter == "l") {
+                       passwordArray.push(getLowerCaseCharacter());
+                   }else if(randomCharacter == "n") {
+                       passwordArray.push(getNumber());
+                   } 
+           }
         console.log("password array: ",passwordArray)
-      
+       
         //passwordArray.forEach(item => console.log(item))
-        const wholePassword = passwordArray.join('')
-        console.log('join password: ',wholePassword);
-        return wholePassword
+            const wholePassword = passwordArray.join('')
+            console.log('join password: ',wholePassword);
+            return wholePassword
     } else {
-      return "ERROR! You must enter a number between 8 and 128."
+      return "ERROR! You must enter a number between 8 and 128 and select at least one criteria."
       }
-    }
-    function getSpecialCharacter() {
+   }
+   function getSpecialCharacter() {
     const specialCharactersArray = [];
-      
+   
     for(let specialCharacter = 0; specialCharacter <= 128; specialCharacter++) {
       if(specialCharacter >= 32 && specialCharacter <= 47 ||
         specialCharacter >= 58 && specialCharacter <= 64 ||
         specialCharacter >= 91 && specialCharacter <= 96 ||
         specialCharacter>=123 && specialCharacter<=126) {
-        
+         
           specialCharactersArray.push(String.fromCharCode(specialCharacter));
       }
     }
@@ -124,9 +125,9 @@ writePassword.addEventListener("click", () => {
       console.log("random special character:",randomCharacter);// ya me esta retornando un caracter special solo
       return randomCharacter
     }
-    }
-    
-    function getLowerCaseCharacter() {
+   }
+   
+   function getLowerCaseCharacter() {
        //97 - 122
        const lowerCaseArray = [];
        for(let i = 0; i <= 128; i++) {
@@ -140,8 +141,8 @@ writePassword.addEventListener("click", () => {
            console.log('random lowerCase character:', randomCharacter);
            return randomCharacter
        }
-    }
-    function getUpperCaseCharacter() {
+   }
+   function getUpperCaseCharacter() {
        //65 - 90
        const upperCaseArray = [];
        for(let i = 0; i <= 128; i++) {
@@ -155,13 +156,12 @@ writePassword.addEventListener("click", () => {
            console.log('random upperCase character:', randomCharacter);
            return randomCharacter
        }
-    }
-    
-    function getNumber () {
+   }
+   
+   function getNumber () {
        if(numberCriteria.checked){
            const number = Math.floor(Math.random() * (9 - 1) + 1)
            console.log('random number: ', number);
            return number
        }
-    }
-    
+   }
