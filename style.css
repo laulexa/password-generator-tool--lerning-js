@@ -51,6 +51,11 @@ margin: 0 auto;
 max-width: 500px;
 padding: 50px;
 }
+
+.card-header {
+    text-align: center;
+}
+
 .card p {
 color: var(--black);
 margin-bottom: 25px;
@@ -100,8 +105,8 @@ border: none;
 display: block;
 width: 100%;
 color: var(--dark-blue);
-padding: 15px 15px 85px;
-font-size: 1.1rem;
+padding: 20px 15px 85px;
+font-size: 1rem;
 font-family:'Ubuntu', sans-serif;
 text-align: center;
 margin-top: 10px;

@@ -33,7 +33,7 @@ console.log("random Method choice: ",randomCharacter);
 getSpecialCharacter();
 getLowerCaseCharacter();
 getUpperCaseCharacter();
-// const criteria5 = numberCriteria.checked
+getNumber();
 return getArrayLength();
 }
 
@@ -59,7 +59,6 @@ if(inputLengthValue >= 8 && inputLengthValue <= 128) {
 }
 function getSpecialCharacter() {
 const specialCharactersArray = [];
-
 
 for(let specialCharacter = 0; specialCharacter <= 128; specialCharacter++) {
   if(specialCharacter >= 32 && specialCharacter <= 47 ||
@@ -91,7 +90,6 @@ function getLowerCaseCharacter() {
        console.log('random lowerCase character:', randomCharacter);
    }
 }
-
 function getUpperCaseCharacter() {
    //65 - 90
    const upperCaseArray = [];
@@ -107,4 +105,7 @@ function getUpperCaseCharacter() {
    }
 }
 
-
+function getNumber () {
+       const number = Math.floor(Math.random() * (9 - 1) + 1)
+       console.log('random number: ', number);
+}
