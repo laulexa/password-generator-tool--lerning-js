@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+   <title>Password Generator Tool</title>
+   <link rel="stylesheet" href="style.css" />
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+ </head>
+ <body>
+   <main class="wrapper">
+     <header>
+       <h1>Password Generator Tool</h1>
+     </header>
+     <section class="card">
+       <div class="card-header">
+         <h2>Create a strong Password</h2>
+         <p>Choose the criteria you want to use to generate a powerful password by pressing the button!</p>
+       </div>
+       <div class="card-body">
+         <textarea
+           readonly
+           id="password"
+           placeholder="Your password will be shown to you right here."
+           aria-label="Generated password result"
+         ></textarea>
+       </div>
+       <footer class="card-footer">
+         <button id="generate" class="btn">Generate Secure Password</button>
+       </footer>
+     </section>
+   </main>
+   <!-- modal -->
+   <section class="modal hidden">
+     <div class="modal__content">
+       <img src="https://img.icons8.com/windows/32/000000/macos-close.png" alt="" class="modal__content--close">
+       <form class="password-criteria">
+         <div class="modal__content--slider">
+           <label for="lenght-criteria">Please choose a number between 8 and 128 characters
+             <br><br>
+             <input type="text" name="password-criteria-1" id="length-criteria" placeholder="8...128" class="input-number-criteria" checked>
+           </label><br><br>
+           <input type="checkbox" name="password-criteria-2" id="special-criteria" value="2">
+           <label for="special-criteria">Include password special characters</label><br><br>
+           <input type="checkbox" name="password-criteria-3" id="lower-case-criteria" value="3">
+           <label for="lower-case-criteria">Include lowercase</label><br><br>
+           <input type="checkbox" name="password-criteria-4" id="upper-case-criteria" value="4">
+           <label for="upper-case-criteria">Include uppercase</label><br><br>
+           <input type="checkbox" name="password-criteria-5" id="number-criteria" value="5">
+           <label for="number-criteria">Include numbers</label><br><br>
+         </div>
+           <button type="button" class="modal__button">Submit</button>
+       </form>
+     </div>
+ </section>
+   <script src="./nodes.js"></script>
+   <script src="main.js"></script>
+ </body>
+</html>
+
+
